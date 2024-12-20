@@ -9,7 +9,20 @@ export default [
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.jest,
+        // Add Vitest globals
+        describe: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        cy: 'readonly',
+        Cypress: 'readonly',
+      },
       parserOptions: {
         ecmaVersion: 2021,
         sourceType: 'module',
